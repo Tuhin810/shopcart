@@ -23,7 +23,7 @@ const ProductDetails = () => {
   const getProduct = async () => {
     try {
       const { data } = await axios.get(
-        `/api/v1/product/get-product/${params.slug}`
+        `https://shopcart-backend-4f2a.onrender.com/api/v1/product/get-product/${params.slug}`
       );
       setProduct(data?.product);
       getSimilarProduct(data?.product._id, data?.product.category._id);
@@ -35,7 +35,7 @@ const ProductDetails = () => {
   const getSimilarProduct = async (pid, cid) => {
     try {
       const { data } = await axios.get(
-        `/api/v1/product/related-product/${pid}/${cid}`
+        `https://shopcart-backend-4f2a.onrender.com/api/v1/product/related-product/${pid}/${cid}`
       );
       setRelatedProducts(data?.products);
     } catch (error) {
@@ -50,7 +50,7 @@ const ProductDetails = () => {
         <div class="md:flex items-center -mx-10">
             <div class="w-full md:w-1/2 px-10 mb-10 md:mb-0">
                 <div class="relative">
-                    <img src={`/api/v1/product/product-photo/${product._id}`} class="w-72 relative z-10 shadow-xl" alt=""/>
+                    <img src={`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-photo/${product._id}`} class="w-72 relative z-10 shadow-xl" alt=""/>
                     <div class="border-4 border-yellow-200 absolute top-10 bottom-10 left-10 right-10 z-0"></div>
                 </div>
             </div>
@@ -103,7 +103,7 @@ const ProductDetails = () => {
               <div class="rounded-md bg-gray-100 p-3 shadow-lg border border-gray-200 hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
            <a href="#">
              <div class="relative flex items-end overflow-hidden rounded-xl">
-               <img className='h-[23rem] w-72 md:h-[16rem] md:w-[16rem]' src={`/api/v1/product/product-photo/${p._id}`}alt="Hotel Photo" />
+               <img className='h-[23rem] w-72 md:h-[16rem] md:w-[16rem]' src={`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-photo/${p._id}`}alt="Hotel Photo" />
               
              </div>
      

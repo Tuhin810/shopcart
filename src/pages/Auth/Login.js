@@ -17,7 +17,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/login", {
+      const res = await axios.post("https://shopcart-backend-4f2a.onrender.com/api/v1/auth/login", {
         email,
         password,
       });

@@ -48,7 +48,7 @@ const CartPage = () => {
   //get payment gateway token
   const getToken = async () => {
     try {
-      const { data } = await axios.get("/api/v1/product/braintree/token");
+      const { data } = await axios.get("https://shopcart-backend-4f2a.onrender.com/api/v1/product/braintree/token");
       setClientToken(data?.clientToken);
     } catch (error) {
       console.log(error);
@@ -63,7 +63,7 @@ const CartPage = () => {
     try {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
-      const { data } = await axios.post("/api/v1/product/braintree/payment", {
+      const { data } = await axios.post("https://shopcart-backend-4f2a.onrender.com/api/v1/product/braintree/payment", {
         nonce,
         cart,
       });
@@ -106,8 +106,8 @@ const CartPage = () => {
                   <div className="mt-4 md:mt-6 flex  flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full ">
                         
                         <div className="pb-4 md:pb-8 w-full md:w-40">
-                            <img className="w-full hidden md:block shadow-lg rounded-md" src={`/api/v1/product/product-photo/${p._id}`} alt="dress" />
-                            <img className="w-full md:hidden" src={`/api/v1/product/product-photo/${p._id}`} alt="dress" />
+                            <img className="w-full hidden md:block shadow-lg rounded-md" src={`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-photo/${p._id}`} alt="dress" />
+                            <img className="w-full md:hidden" src={`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-photo/${p._id}`} alt="dress" />
                         </div>
                         <div className="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full  pb-8 space-y-4 md:space-y-0">
                             <div className="w-full flex flex-col justify-start items-start space-y-8">

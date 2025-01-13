@@ -32,7 +32,7 @@ const Search = () => {
               <div class="rounded-md bg-gray-100 p-3 shadow-lg border border-gray-200 hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
            <a href="#">
              <div class="relative flex items-end overflow-hidden rounded-xl">
-               <img className='h-[23rem] w-72 md:h-[21rem] md:w-[16rem]' src={`/api/v1/product/product-photo/${p._id}`}alt="Hotel Photo" />
+               <img className='h-[23rem] w-72 md:h-[21rem] md:w-[16rem]' src={`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-photo/${p._id}`}alt="Hotel Photo" />
               
              </div>
      

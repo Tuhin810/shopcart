@@ -107,13 +107,7 @@ const NavbarHome = () => {
         <Link to="/" className="hover:text-blue-800">
                   Home
                 </Link>
-                <Link
-                  className="hover:text-blue-800"
-                  to={"/categories"}
-                  data-bs-toggle="dropdown"
-                >
-                 All Categories
-                </Link>
+               
                 <div class="relative parent">
                 <Link to="/categories" class="flex justify-between md:inline-flex items-center  space-x-2">
                     <span> All Categories</span>

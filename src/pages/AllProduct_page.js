@@ -24,7 +24,7 @@ const AllProducts = () => {
   //get all cat
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("/api/v1/category/get-category");
+      const { data } = await axios.get("https://shopcart-backend-4f2a.onrender.com/api/v1/category/get-category");
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -41,7 +41,7 @@ const AllProducts = () => {
   const getAllProducts = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
+      const { data } = await axios.get(`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-list/${page}`);
       setLoading(false);
       setProducts(data.products);
     } catch (error) {
@@ -53,7 +53,7 @@ const AllProducts = () => {
   //getTOtal COunt
   const getTotal = async () => {
     try {
-      const { data } = await axios.get("/api/v1/product/product-count");
+      const { data } = await axios.get("https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-count");
       setTotal(data?.total);
     } catch (error) {
       console.log(error);
@@ -68,7 +68,7 @@ const AllProducts = () => {
   const loadMore = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
+      const { data } = await axios.get(`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-list/${page}`);
       setLoading(false);
       setProducts([...products, ...data?.products]);
     } catch (error) {
@@ -98,7 +98,7 @@ const AllProducts = () => {
   //get filterd product
   const filterProduct = async () => {
     try {
-      const { data } = await axios.post("/api/v1/product/product-filters", {
+      const { data } = await axios.post("https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-filters", {
         checked,
         radio,
       });
@@ -183,7 +183,7 @@ const AllProducts = () => {
               <div class="rounded-md bg-gray-100 p-3 shadow-lg border border-gray-200 hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
            <a href="#">
              <div class="relative flex items-end overflow-hidden rounded-xl">
-               <img className='h-[23rem] w-72 md:h-[21rem] md:w-[16rem]' src={`/api/v1/product/product-photo/${p._id}`}alt="Hotel Photo" />
+               <img className='h-[23rem] w-72 md:h-[21rem] md:w-[16rem]' src={`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-photo/${p._id}`}alt="Hotel Photo" />
               
              </div>
      

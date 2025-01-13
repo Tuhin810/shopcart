@@ -17,7 +17,7 @@ const CategoryProduct = () => {
   const getPrductsByCat = async () => {
     try {
       const { data } = await axios.get(
-        `/api/v1/product/product-category/${params.slug}`
+        `https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-category/${params.slug}`
       );
       setProducts(data?.products);
       setCategory(data?.category);
@@ -40,7 +40,7 @@ const CategoryProduct = () => {
               <div class="rounded-md bg-gray-100 p-3 shadow-lg border border-gray-200 hover:shadow-xl hover:transform hover:scale-105 duration-300 ">
            <a href="#">
              <div class="relative flex items-end overflow-hidden rounded-xl">
-               <img className='h-72 w-72' src={`/api/v1/product/product-photo/${p._id}`}alt="Hotel Photo" />
+               <img className='h-72 w-72' src={`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-photo/${p._id}`}alt="Hotel Photo" />
               
              </div>
      
