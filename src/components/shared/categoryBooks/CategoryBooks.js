@@ -4,8 +4,8 @@ import CategoryProduct from './CategoryProduct'
 const CategoryBooks = () => {
   return (
     <div className=''>
-        <CategoryProduct topic={"shoes"}/>
-        <CategoryProduct topic={"furniture"}/>
+        <CategoryProduct topic={"story"}/>
+        <CategoryProduct topic={"fantasy"}/>
         </div>
   )
 }

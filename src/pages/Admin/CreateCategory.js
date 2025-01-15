@@ -86,60 +86,61 @@ const CreateCategory = () => {
     }
   };
   return (
-    <Layout title={"Dashboard - Create Category"}>
-      <div className="container-fluid m-3 p-3 dashboard">
-        <div className="row flex ">
+      <div className="container-fluid m-3 p-3 ">
+        <div className="flex ">
           <div className="col-md-3">
             <AdminMenu />
           </div>
-          <div className="col-md-9 p-5">
-            <h1>Manage Category</h1>
-            <div className="p-3 w-50">
-              <CategoryForm
+
+          <div className="w-full p-5">
+            <div className="flex justify-between items-center bg-gray-800 py-6 px-4 w-full rounded-lg shadow-lg  text-white">
+            <div className="text-xl">All Categories</div>
+            <CategoryForm
                 handleSubmit={handleSubmit}
                 value={name}
                 setValue={setName}
               />
-            </div>
-            <div className="w-75">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {categories?.map((c) => (
-                    <>
-                      <tr>
-                        <td key={c._id}>{c.name}</td>
-                        <td>
-                          <button
-                            className="btn btn-primary ms-2"
-                            onClick={() => {
-                              setVisible(true);
-                              setUpdatedName(c.name);
-                              setSelected(c);
-                            }}
-                          >
-                            Edit
-                          </button>
-                          <button
-                            className="btn btn-danger ms-2"
-                            onClick={() => {
-                              handleDelete(c._id);
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    </>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+              </div>
+           
+            <div className="w-full mt-5 bg-white shadow-md rounded-md">
+  <table className="w-full border border-gray-300 rounded-md overflow-hidden">
+    <thead>
+      <tr className="bg-gray-100 text-left">
+        <th className="p-3 text-sm font-semibold text-gray-800">Name</th>
+        <th className="p-3 text-sm font-semibold text-gray-800">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {categories?.map((c) => (
+        <tr
+          key={c._id}
+          className="border-b last:border-none hover:bg-gray-50 transition"
+        >
+          <td className="p-3 text-sm text-gray-800">{c.name}</td>
+          <td className="p-3 text-sm flex items-center space-x-2">
+            {/* <button
+              className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm font-medium"
+              onClick={() => {
+                setVisible(true);
+                setUpdatedName(c.name);
+                setSelected(c);
+              }}
+            >
+              Edit
+            </button> */}
+            <button
+              className="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded text-sm font-medium"
+              onClick={() => handleDelete(c._id)}
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
             <Modal
               onCancel={() => setVisible(false)}
               footer={null}
@@ -154,7 +155,6 @@ const CreateCategory = () => {
           </div>
         </div>
       </div>
-    </Layout>
   );
 };
 
