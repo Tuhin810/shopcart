@@ -17,7 +17,7 @@ const Layout = ({ children, title, description, keywords, author }) => {
       </Helmet>
       {/* <Header /> */}
     
-     <div className="mb-24
+     <div className="
      "> <NavbarHome/></div>
       <main style={{ minHeight: "70vh" }}>
         <Toaster />
