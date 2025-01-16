@@ -20,10 +20,8 @@ export const CartIdProvider = ({ children }) => {
   const addProduct = (id) => {
     setProductIds((prev) => {
       if (!prev.includes(id)) {
-        console.log(`Product with ID ${id} added to the cart.`);
         return [...prev, id];
       }
-      console.log(`Product with ID ${id} is already in the cart.`);
       return prev;
     });
   };
@@ -32,10 +30,8 @@ export const CartIdProvider = ({ children }) => {
   const removeProduct = (id) => {
     setProductIds((prev) => {
       if (prev.includes(id)) {
-        console.log(`Product with ID ${id} removed from the cart.`);
         return prev.filter((productId) => productId !== id);
       }
-      console.log(`Product with ID ${id} is not in the cart.`);
       return prev;
     });
   };
@@ -43,9 +39,7 @@ export const CartIdProvider = ({ children }) => {
   // Function to check if a given ID is in the cart
   const isProductInCart = (id) => {
     const isInCart = productIds.includes(id);
-    console.log(
-      `Product with ID ${id} is ${isInCart ? "in" : "not in"} the cart.`
-    );
+
     return isInCart;
   };
 
