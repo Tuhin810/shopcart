@@ -44,7 +44,7 @@ const CategoryProduct = ({ topic }) => {
           </div>
 
           {/* Right Section: View More */}
-          <div className="group flex items-center pr-8 gap-2 text-gray-800 cursor-pointer  transition">
+          <div className="hidden md:flex group flex items-center pr-8 gap-2 text-gray-800 cursor-pointer  transition">
             <span className="text-sm font-medium group-hover:text-yellow-500">
               View More
             </span>
@@ -58,7 +58,7 @@ const CategoryProduct = ({ topic }) => {
           </div>
         </div>
 
-        <div className="justify-between  sm:flex pt-10">
+        <div className="items-center justify-center md:justify-between   md:flex pt-10">
           {products?.slice(-6).map((p) => (
             <BookCard
               key={p.id} // Ensure a unique key for each item

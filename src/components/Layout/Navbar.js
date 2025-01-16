@@ -8,7 +8,7 @@ import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import { Badge } from "antd";
 import { ShoppingBagIcon } from "@heroicons/react/24/solid";
-import { IconSearch, IconShoppingBag } from "@tabler/icons-react";
+import { IconBook, IconSearch, IconShoppingBag } from "@tabler/icons-react";
 
 const NavbarHome = () => {
   const [auth, setAuth] = useAuth();
@@ -32,14 +32,12 @@ const NavbarHome = () => {
         <div class="px-4">
           <div class="flex items-center justify-between">
             <div class="flex shrink-0">
-              <a aria-current="page" class="flex items-center" href="/">
-                <img
-                  class="h-7 w-auto"
-                  src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
-                  alt=""
-                />
-                <p class="sr-only">Website Title</p>
-              </a>
+              <Link aria-current="page" class="flex items-center" to="/">
+              <IconBook size={24} className="mr-2" />
+              <div className="text-sm">
+                Bookly
+              </div>
+              </Link>
             </div>
             <div class="hidden md:flex md:items-center md:justify-center md:gap-5">
               <a
@@ -47,30 +45,36 @@ const NavbarHome = () => {
                 class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
                 href="#"
               >
-                How it works
+               About us
               </a>
               <a
                 class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
                 href="#"
               >
-                Pricing
+                Contact
+              </a>
+              <a
+                class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+                href="#"
+              >
+                Help & support
               </a>
             </div>
             {!auth?.user ? (
               <div class="flex items-center justify-end gap-3">
-                <a
+                <Link
                   class="hidden items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 transition-all duration-150 hover:bg-gray-50 sm:inline-flex"
-                  href="/register"
+                  to="/register"
                 >
                   Sign up
-                </a>
-                <a
+                </Link>
+                <Link
                   class="inline-flex items-center justify-center rounded-full bg-yellow-300 px-5 py-2 text-sm font-semibold text-black
                    shadow-sm transition-all duration-150 hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                  href="/login"
+                  to="/login"
                 >
                   Login
-                </a>
+                </Link>
               </div>
             ) : (
               <div className="relative flex items-center gap-4 justify-end">

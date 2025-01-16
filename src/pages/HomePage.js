@@ -14,8 +14,6 @@ function HomePage() {
       <CategorySection />
       <CategoryBooks />
 
-   
-
       {/* instruction start */}
       <div className="2xl:container 2xl:mx-auto lg:px-20 md:py-12 md:px-6 py-9 px-4">
         <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-8 gap-6 ">

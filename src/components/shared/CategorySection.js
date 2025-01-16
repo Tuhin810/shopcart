@@ -15,8 +15,8 @@ const CategorySection = () => {
 <div>
   <section className="py-12 bg-gray-100">
     <div className="text-center mb-8">
-      <h2 className="text-3xl font-bold text-gray-800">What's in our product</h2>
-      <p className="text-gray-600">
+      <h2 className="text-xl md:text-3xl font-bold text-gray-800">What's in our product</h2>
+      <p className="text-gray-600 text-sm md:text-base">
         Our products are 100% organic and pure; here is the best explanation of our product!
       </p>
     </div>

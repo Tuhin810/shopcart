@@ -41,7 +41,7 @@ const Register = () => {
 
   return (
     <Layout title="Register - Ecommer App">
-         <div class="mx-auto px-32 flex h-screen max-w-lg flex-col md:max-w-none md:flex-row md:pr-10 pt-10">
+         <div class="mx-auto md:px-32 flex h-screen max-w-lg flex-col md:max-w-none md:flex-row md:pr-10 pt-5">
   
   <div class="px-4 py-20">
     <h2 class="mb-2 text-3xl font-bold">Sign Up</h2>
@@ -92,7 +92,7 @@ const Register = () => {
     <button onClick={handleSubmit} class="hover:shadow-blue-600/40 rounded-full bg-gray-900 px-5 py-3 font-bold text-white transition-all hover:opacity-90 hover:shadow-lg">
    Create your account</button>
   </div>
-  <img className="ml-32 h-[85%] mt-20" src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7885.jpg?t=st=1737011218~exp=1737014818~hmac=5f7bee5508d537f34ea05dd717bb450e551d39c088ef24dcbab23c5610595c62&w=740">
+  <img className="md:ml-32 md:h-[85%] md:mt-20" src="https://img.freepik.com/free-vector/sign-up-concept-illustration_114360-7885.jpg?t=st=1737011218~exp=1737014818~hmac=5f7bee5508d537f34ea05dd717bb450e551d39c088ef24dcbab23c5610595c62&w=740">
   </img>
 </div>
    

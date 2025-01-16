@@ -44,7 +44,7 @@ const Login = () => {
   return (
  <Layout title="Register - Ecommer App">
     <div class="font-[sans-serif]">
-      <div class="min-h-screen flex fle-col items-center justify-center py-6 px-4">
+      <div class="min-h-screen flex fle-col items-center justify-center pt-20 md:pt-0 py-6 px-4">
         <div class="grid md:grid-cols-2 items-center gap-6 max-w-6xl w-full">
           <div class="border border-gray-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
             <form class="space-y-4">

@@ -32,10 +32,10 @@ const BookCard = ({ p,cart,setCart, toast, navigate }) => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center">
       <div
         onClick={() => navigate(`/product/${p.slug}`)}
-        className="mr-10 cursor-pointer relative hover:shadow-xl transition-shadow duration-300"
+        className="md:mr-10 w-48 cursor-pointer relative hover:shadow-xl transition-shadow duration-300"
       >
         {/* Add to Cart Button */}
         <button

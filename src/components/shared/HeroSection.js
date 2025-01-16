@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <section className="pt-12 bg-yellow-300 h-screen pb-12 sm:pb-16 lg:pt-24">
+    <section className="pt-24 md:pt-12 bg-yellow-300 md:h-screen pb-12 sm:pb-16 lg:pt-24">
     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="grid max-w-lg grid-cols-1 mx-auto lg:max-w-full lg:items-center lg:grid-cols-2 gap-y-12 lg:gap-x-16">
             <div>
@@ -22,17 +22,19 @@ const HeroSection = () => {
                         </div>
                     </div>
                     <form action="#" method="POST" className="mt-8 sm:mt-10">
-                        <div className="relative bg-white p-2 rounded-full sm:border sm:border-gray-400 group  sm:focus-within:ring-1
+                        <div className="relative flex bg-white p-2 rounded-full sm:border sm:border-gray-400 group  sm:focus-within:ring-1
                          sm:focus-within:ring-gray-900 sm:focus-within:border-gray-900">
                             <input
                                 type="email"
                                 name=""
                                 id=""
                                 placeholder="Search Books.."
-                                className="block w-full px-4 py-4 text-gray-900 placeholder-gray-900 bg-transparent border border-gray-400 outline-none focus:border-gray-900 focus:ring-1 focus:ring-gray-900 rounded-xl sm:border-none sm:focus:ring-0 sm:focus:border-transparent"
+                                className="block w-full px-4 py-4 text-gray-900 placeholder-gray-900
+                                 bg-transparent outline-none focus:border-gray-900 focus:ring-1 focus:ring-gray-900 rounded-xl
+                                  sm:border-none sm:focus:ring-0 sm:focus:border-transparent"
                                 required=""
                             />
-                            <div className="mt-4 sm:mt-0 sm:absolute sm:inset-y-0 sm:right-0 sm:flex sm:items-center sm:pr-2">
+                            <div className="sm:mt-0 sm:absolute sm:inset-y-0 sm:right-0 sm:flex sm:items-center sm:pr-2">
                                 <button type="submit" className="inline-flex px-6 py-3 text-lg font-bold text-white transition-all duration-200 bg-gray-900 
                                 rounded-full focus:outline-none focus:bg-gray-600 font-pj hover:bg-gray-600">
                                   Search
@@ -42,7 +44,7 @@ const HeroSection = () => {
                     </form>
                 </div>
 
-                <div className="flex items-center justify-center mt-10 space-x-6 lg:justify-start sm:space-x-8">
+                <div className="hidden md:flex md:items-center justify-center mt-10  lg:justify-start sm:space-x-8">
                     <div className="flex items-center">
                         <p className="text-3xl font-medium text-gray-900 sm:text-4xl font-pj">2943</p>
                         <p className="ml-3 text-sm text-gray-900 font-pj">Cards<br />Delivered</p>
@@ -65,44 +67,13 @@ const HeroSection = () => {
                 </div>
             </div>
 
-            <div>
+            <div className="hidden lg:inline">
                 <img className="w-full" src="https://github.com/mdalmamunit427/build-full-stack-book-store-mern-app/blob/main/frontend/src/assets/banner.png?raw=true" alt="" />
             </div>
         </div>
     </div>
 </section>
-    // <div className="flex flex-col md:flex-row-reverse py-16 justify-between items-center gap-12 bg-gray-800 px-32 pt-32 pb-20">
-    //   <div className="md:w-1/2 w-full flex items-center md:justify-end">
-    //     <img
-    //       src={
-    //         "https://github.com/mdalmamunit427/build-full-stack-book-store-mern-app/blob/main/frontend/src/assets/banner.png?raw=true"
-    //       }
-    //       alt=""
-    //     />
-    //   </div>
-
-    //   <div className="md:w-1/2 w-full text-white">
-    //     <h1 className="md:text-6xl text-2xl font-semibold mb-7">
-    //       New Releases This Week
-    //     </h1>
-    //     <p className="mb-10">
-    //       It's time to update your reading list with some of the latest and
-    //       greatest releases in the literary world. From heart-pumping thrillers
-    //       to captivating memoirs, this week's new releases offer something for
-    //       everyone
-    //     </p>
-
-    //     <button class="overflow-hidden relative w-44 p-2 h-12 bg-white text-gray-900 border-none rounded-md text-xl font- cursor-pointer relative z-10 group">
-    //       Explore Now
-    //       <span class="absolute w-48 h-32 -top-8 -left-2 bg-sky-200 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-right"></span>
-    //       <span class="absolute w-48 h-32 -top-8 -left-2 bg-sky-400 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-right"></span>
-    //       <span class="absolute w-48 h-32 -top-8 -left-2 bg-sky-600 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-right"></span>
-    //       <span class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-6 z-10">
-    //       Explore Now
-    //       </span>
-    //     </button>
-    //   </div>
-    // </div>
+   
   );
 };
 
