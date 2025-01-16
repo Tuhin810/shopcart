@@ -21,7 +21,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative pt-24 bg-[#ffd700] sm:bg-transparent md:pt-12  md:h-screen pb-12 sm:pb-16 lg:pt-24">
+    <section className="relative pt-24 bg-yellow-300 sm:bg-transparent md:pt-12  md:h-screen pb-12 sm:pb-16 lg:pt-24">
       {/* SVG Background */}
       <div className="absolute top-0 right-0 -z-10 w-full h-full">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="190 0 340 320">
