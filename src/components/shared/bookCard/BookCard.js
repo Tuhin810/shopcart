@@ -1,21 +1,57 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { IconHeart, IconShoppingBagPlus } from "@tabler/icons-react";
+import { IconShoppingBagCheck, IconShoppingBagPlus } from "@tabler/icons-react";
 import React from "react";
+import { useCart } from "../../../context/cartIds";
 
-const BookCard = ({ p, cart, setCart, toast, navigate }) => {
+const BookCard = ({ p,cart,setCart, toast, navigate }) => {
+  const { addProduct, removeProduct, isProductInCart } = useCart(); // Destructure context methods
+
+  const removeCartItem = (pid) => {
+    try {
+      let myCart = [...cart];
+      let index = myCart.findIndex((item) => item._id === pid);
+      myCart.splice(index, 1);
+      setCart(myCart);
+      localStorage.setItem("cart", JSON.stringify(myCart));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  const handleCartToggle = () => {
+    if (isProductInCart(p._id)) {
+      removeProduct(p._id); // Remove product from cart
+      removeCartItem(p._id)
+      toast.info("Item removed from cart");
+    } else {
+      addProduct(p._id); // Add product to cart
+      setCart([...cart, p]);
+      localStorage.setItem("cart", JSON.stringify([...cart, p]));
+      toast.success("Item added to cart");
+    }
+  };
+
   return (
     <div>
-      <div className="mr-10  relative hover:shadow-xl transition-shadow duration-300">
-        {/* Favorite Icon */}
+      <div
+        onClick={() => navigate(`/product/${p.slug}`)}
+        className="mr-10 cursor-pointer relative hover:shadow-xl transition-shadow duration-300"
+      >
+        {/* Add to Cart Button */}
         <button
-          onClick={() => {
-            setCart([...cart, p]);
-            localStorage.setItem("cart", JSON.stringify([...cart, p]));
-            toast.success("Item Added to cart");
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent navigation when clicking the button
+            handleCartToggle();
           }}
-          className="absolute bottom-3 z-[20] flex gap-1 items-center bg-black px-4 rounded-full py-2 text-sm right-3 text-gray-50 hover:text-red-500 transition"
+          className={`absolute bottom-3 z-[20] flex gap-1 items-center ${
+            isProductInCart(p._id) ? "bg-yellow-300 text-black" : "bg-black text-gray-50"
+          } px-4 rounded-full py-2 text-sm right-3  transition`}
         >
-          <IconShoppingBagPlus size={20} /> Add
+          {
+            isProductInCart(p._id) ?    <IconShoppingBagCheck size={20} />:   <IconShoppingBagPlus size={20} />
+          }
+       
+          {isProductInCart(p._id) ? "Added" : "Add"}
         </button>
 
         {/* Image Section */}
@@ -29,32 +65,19 @@ const BookCard = ({ p, cart, setCart, toast, navigate }) => {
 
         {/* Text Section */}
       </div>
-      <div className=" justify-between items-center w-48 px-2">
-        <div className="mt-3 ">
+      <div className="justify-between items-center w-48 px-2">
+        <div className="mt-3">
           <h4 className="text-sm font-semibold text-gray-90">
             {p?.name?.length > 20 ? `${p.name.substring(0, 20)}...` : p?.name}
           </h4>
 
-          <h4 className="text-lg font-base text-red-600 -mt-2">
-            {" "}
+          <h4 className="text-lg font-base text-gray-800 -mt-2">
             {p.price.toLocaleString("en-US", {
               style: "currency",
               currency: "INR",
             })}
           </h4>
         </div>
-        {/* <div className="-mt-2 flex justify-start  items-center">
-          <button
-            class="text-sm bg-gray-200 px-2 py-2  font-semibold text-black"
-            onClick={() => {
-              setCart([...cart, p]);
-              localStorage.setItem("cart", JSON.stringify([...cart, p]));
-              toast.success("Item Added to cart");
-            }}
-          >
-           Add to cart
-          </button>
-        </div> */}
       </div>
     </div>
   );

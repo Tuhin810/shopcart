@@ -129,7 +129,7 @@ const CreateCategory = () => {
               Edit
             </button> */}
             <button
-              className="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded text-sm font-medium"
+              className="bg-yellow-300 hover:bg-red-600 text-white py-1 px-3 rounded text-sm font-medium"
               onClick={() => handleDelete(c._id)}
             >
               Delete

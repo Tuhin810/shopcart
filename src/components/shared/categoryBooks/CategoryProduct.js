@@ -45,14 +45,16 @@ const CategoryProduct = ({ topic }) => {
 
           {/* Right Section: View More */}
           <div className="group flex items-center pr-8 gap-2 text-gray-800 cursor-pointer  transition">
-            <span className="text-sm font-medium group-hover:text-red-500">View More</span>
-            <div className=" flex items-center justify-center w-10 h-10 bg-black rounded-full text-white group-hover:text-red-500 overflow-hidden">
-  <IconArrowRight
-    size={16}
-    className="transform transition-all duration-300 group-hover:-translate-x-1 group-hover:translate-x-0.5"
-  />
-</div>
-
+            <span className="text-sm font-medium group-hover:text-yellow-500">
+              View More
+            </span>
+            <div className=" flex items-center justify-center w-10 h-10 bg-black rounded-full text-white
+             group-hover:text-yellow-200 overflow-hidden">
+              <IconArrowRight
+                size={16}
+                className="transform transition-all duration-300 group-hover:-translate-x-1 group-hover:translate-x-0.5"
+              />
+            </div>
           </div>
         </div>
 
