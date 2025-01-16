@@ -1,15 +1,43 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSearch } from "../../context/search";
+import axios from "axios";
 
 const HeroSection = () => {
+  const [values, setValues] = useSearch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.get(
+        `https://shopcart-backend-4f2a.onrender.com/api/v1/product/search/${values.keyword}`
+      );
+      setValues({ ...values, results: data });
+      navigate("/allproducts");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <section className="pt-24 md:pt-12 bg-yellow-300 md:h-screen pb-12 sm:pb-16 lg:pt-24">
+    <section className="relative pt-24 bg-yellow-300 sm:bg-transparent md:pt-12  md:h-screen pb-12 sm:pb-16 lg:pt-24">
+      {/* SVG Background */}
+      <div className="absolute top-0 right-0 -z-10 w-full h-full">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="190 0 340 320">
+          <path
+            fill="#ffd700"
+            fill-opacity="0.58"
+            d="M0,96L48,112C96,128,192,160,288,154.7C384,149,480,107,576,122.7C672,139,768,213,864,245.3C960,277,1056,267,1152,272C1248,277,1344,299,1392,309.3L1440,320L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+          ></path>
+        </svg>
+      </div>
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="grid max-w-lg grid-cols-1 mx-auto lg:max-w-full lg:items-center lg:grid-cols-2 gap-y-12 lg:gap-x-16">
           <div>
-            <div className="text-center lg:text-left">
+            <div className="text-center lg:text-left pt-8">
               <h1 className="text-4xl font-bold pt-5 text-gray-900 lg:text-6xl font-pj">
-                A special credit card made for Developers.
+                Your Book’s Next Story Starts Here
               </h1>
               <div class="max-w-sm mx-auto sm:max-w-md md:max-w-full">
                 <div class="mt-8 lg:mt-12 lg:flex lg:items-center">
@@ -32,18 +60,22 @@ const HeroSection = () => {
                   </div>
 
                   <p class="mt-4 text-lg text-gray-900 lg:mt-0 lg:ml-4 font-pj">
-                    Join with <span class="font-bold">4600+ Developers</span>{" "}
-                    and start getting feedbacks right now
+                    <span class="font-bold">Resell, Reuse, and Rediscover</span>{" "}
+                    Pre-Loved Books Your Next Favorite Story
                   </p>
                 </div>
               </div>
-              <form action="#" method="POST" className="mt-8 sm:mt-10">
+              <form onSubmit={handleSubmit} className="mt-8 sm:mt-10">
                 <div className="relative flex bg-white p-2 rounded-full shadow-lg">
                   <input
-                    type="email"
-                    name=""
-                    id=""
-                    placeholder="Search Books.."
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                    value={values.keyword}
+                    onChange={(e) =>
+                      setValues({ ...values, keyword: e.target.value })
+                    }
+                    x-model="q"
                     className="block w-full px-4 py-4 text-gray-900 placeholder-gray-900
                                  bg-transparent outline-none focus:border-gray-900 focus:ring-1 focus:ring-gray-900 rounded-xl
                                   sm:border-none sm:focus:ring-0 sm:focus:border-transparent"
@@ -51,6 +83,7 @@ const HeroSection = () => {
                   />
                   <div className="sm:mt-0 sm:absolute sm:inset-y-0 sm:right-0 sm:flex sm:items-center sm:pr-2">
                     <button
+                      onClick={handleSubmit}
                       type="submit"
                       className="inline-flex px-6 py-3 text-lg font-bold text-white transition-all duration-200 bg-gray-900 
                                 rounded-full focus:outline-none focus:bg-gray-600 font-pj hover:bg-gray-600"
@@ -130,7 +163,7 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className="hidden lg:inline">
+          <div className="hidden lg:inline -mt-10">
             <img
               className="w-full"
               src="https://github.com/mdalmamunit427/build-full-stack-book-store-mern-app/blob/main/frontend/src/assets/banner.png?raw=true"
