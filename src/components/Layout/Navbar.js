@@ -8,7 +8,15 @@ import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import { Badge } from "antd";
 import { ShoppingBagIcon } from "@heroicons/react/24/solid";
-import { IconBook, IconSearch, IconShoppingBag } from "@tabler/icons-react";
+import {
+  IconBook,
+  IconDashboard,
+  IconLogout,
+  IconSearch,
+  IconShoppingBag,
+  IconShoppingCart,
+  IconUserEdit,
+} from "@tabler/icons-react";
 
 const NavbarHome = () => {
   const [auth, setAuth] = useAuth();
@@ -27,16 +35,13 @@ const NavbarHome = () => {
   };
   return (
     <>
-
       <header class="fixed inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border border-gray-100 bg-white/80 py-3 shadow backdrop-blur-lg md:top-6 md:rounded-3xl lg:max-w-screen-lg">
         <div class="px-4">
           <div class="flex items-center justify-between">
             <div class="flex shrink-0">
               <Link aria-current="page" class="flex items-center" to="/">
-              <IconBook size={24} className="mr-2" />
-              <div className="text-sm">
-                Bookly
-              </div>
+                <IconBook size={24} className="mr-2" />
+                <div className="text-sm">Bookly</div>
               </Link>
             </div>
             <div class="hidden md:flex md:items-center md:justify-center md:gap-5">
@@ -45,7 +50,7 @@ const NavbarHome = () => {
                 class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
                 href="#"
               >
-               About us
+                About us
               </a>
               <a
                 class="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
@@ -105,28 +110,50 @@ const NavbarHome = () => {
                   />
 
                   {isOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg">
-                      <ul className="py-2">
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                          <NavLink
-                            to={`/dashboard/${
-                              auth?.user?.role === 1 ? "admin" : "user"
-                            }`}
-                            className="dropdown-item"
-                          >
-                            Dashboard
-                          </NavLink>
-                        </li>
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                          <NavLink
-                            onClick={handleLogout}
-                            to="/login"
-                            className="dropdown-item"
-                          >
-                            Logout
-                          </NavLink>
-                        </li>
-                      </ul>
+                    <div className="relative">
+                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg">
+                        <ul className="py-2">
+                          <li className="px-4 py-2 hover:bg-yellow-100 flex items-center gap-2 cursor-pointer">
+                            <IconDashboard className="w-5 h-5 text-yellow-600" />
+                            <NavLink
+                              to={`/dashboard/${
+                                auth?.user?.role === 1 ? "admin" : "user"
+                              }`}
+                              className="dropdown-item text-gray-700"
+                            >
+                              Dashboard
+                            </NavLink>
+                          </li>
+                          <li className="px-4 py-2 hover:bg-yellow-100 flex items-center gap-2 cursor-pointer">
+                            <IconShoppingCart className="w-5 h-5 text-yellow-600" />
+                            <NavLink
+                              to="/dashboard/user/orders"
+                              className="dropdown-item text-gray-700"
+                            >
+                              My Orders
+                            </NavLink>
+                          </li>
+                          <li className="px-4 py-2 hover:bg-yellow-100 flex items-center gap-2 cursor-pointer">
+                            <IconUserEdit className="w-5 h-5 text-yellow-600" />
+                            <NavLink
+                              to="/dashboard/user/profile"
+                              className="dropdown-item text-gray-700"
+                            >
+                              Edit Profile
+                            </NavLink>
+                          </li>
+                          <li className="px-4 py-2 hover:bg-yellow-100 flex items-center gap-2 cursor-pointer">
+                            <IconLogout className="w-5 h-5 text-yellow-600" />
+                            <NavLink
+                              onClick={handleLogout}
+                              to="/login"
+                              className="dropdown-item text-gray-700"
+                            >
+                              Logout
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   )}
                 </div>
