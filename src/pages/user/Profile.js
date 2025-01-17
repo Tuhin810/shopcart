@@ -57,7 +57,7 @@ const Profile = () => {
 
   return (
     <Layout title={"Your Profile"}>
-      <div className="flex pt-20 items-center justify-center min-h-screen  gap-5">
+      <div className="md:flex pt-20 items-center justify-center min-h-screen  gap-5">
         <div className="w-full max-w-lg p-8 bg-white  border text-gray-900 rounded-lg shadow-md">
           <h2 className="text-3xl font-bold text-center mb-6">User Profile</h2>
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -127,7 +127,7 @@ const Profile = () => {
           </form>
         </div>
         <img
-          className="w-[40%]"
+          className="hidden md:inline w-[40%]"
           src="https://img.freepik.com/free-vector/account-concept-illustration_114360-5201.jpg?t=st=1737144078~exp=1737147678~hmac=1f72437c505d7adbcae0225c1a3a19ae40a1e44d95f25e7b9e3851b9aa5c2053&w=740"
         />
       </div>
