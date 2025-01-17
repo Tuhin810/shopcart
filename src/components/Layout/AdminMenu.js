@@ -103,7 +103,7 @@ const AdminMenu = () => {
             </Link>
           </ListItem>
 
-          {/* <ListItem>
+          <ListItem>
             <ListItemPrefix>
               <UserCircleIcon className="h-5 w-5" />
             </ListItemPrefix>
@@ -111,9 +111,9 @@ const AdminMenu = () => {
               to="/dashboard/admin/orders"
               className="list-group-item list-group-item-action"
             >
-              Orders
+              Placed Orders
             </Link>
-          </ListItem> */}
+          </ListItem>
           <ListItem>
             <ListItemPrefix>
               <Cog6ToothIcon className="h-5 w-5" />

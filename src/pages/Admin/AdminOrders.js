@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -63,71 +64,92 @@ const AdminOrders = () => {
           </button>
         </div>
         <div className="h-[80vh]">
-          <img
-            className="h-[80%] mx-auto"
-            src="https://img.freepik.com/free-photo/cardboard-box-with-cargo-checklist-pencil_107791-16644.jpg?t=st=1737137768~exp=1737141368~hmac=0357c969dfa1523cbd859daa92ca028a741f2fb1702e2efbbbf4da321c891353&w=740"
-          />
-          {/* <div className="text-center">No Order placed yet</div> */}
-          {orders?.map((o, i) => {
-            return (
-              <div className="border shadow">
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Buyer</th>
-                      <th scope="col"> date</th>
-                      <th scope="col">Payment</th>
-                      <th scope="col">Quantity</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>{i + 1}</td>
-                      <td>
-                        <Select
-                          bordered={false}
-                          onChange={(value) => handleChange(o._id, value)}
-                          defaultValue={o?.status}
-                        >
-                          {status.map((s, i) => (
-                            <Option key={i} value={s}>
-                              {s}
-                            </Option>
-                          ))}
-                        </Select>
-                      </td>
-                      <td>{o?.buyer?.name}</td>
-                      <td>{moment(o?.createAt).fromNow()}</td>
-                      <td>{o?.payment.success ? "Success" : "Failed"}</td>
-                      <td>{o?.products?.length}</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div className="container">
-                  {o?.products?.map((p, i) => (
-                    <div className="row mb-2 p-3 card flex-row" key={p._id}>
-                      <div className="col-md-4">
-                        <img
-                          src={`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-photo/${p._id}`}
-                          className="card-img-top"
-                          alt={p.name}
-                          width="100px"
-                          height={"100px"}
-                        />
+          {orders.length <= 0 && (
+            <img
+              className="h-[80%] mx-auto"
+              src="https://img.freepik.com/free-photo/cardboard-box-with-cargo-checklist-pencil_107791-16644.jpg?t=st=1737137768~exp=1737141368~hmac=0357c969dfa1523cbd859daa92ca028a741f2fb1702e2efbbbf4da321c891353&w=740"
+            />
+          )}
+
+          <div className="overflow-y-scroll h-[80vh]">
+            {orders?.map((o, i) => {
+              return (
+                <div className="border rounded-lg shadow-lg mb-6 bg-white">
+                  <div className="overflow-x-auto">
+                    <table className="table-auto w-full text-left border-collapse">
+                      <thead className="bg-gray-200">
+                        <tr>
+                          <th className="px-4 py-2 border">#</th>
+                          <th className="px-4 py-2 border">Status</th>
+                          <th className="px-4 py-2 border">Buyer</th>
+                          <th className="px-4 py-2 border">Date</th>
+                          <th className="px-4 py-2 border">Payment</th>
+                          <th className="px-4 py-2 border">Quantity</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr className="hover:bg-gray-100">
+                          <td className="px-4 py-2 border">{i + 1}</td>
+                          <td className="px-4 py-2 border">
+                            <select
+                              className="bg-white border border-gray-300 rounded px-2 py-1 focus:ring focus:ring-blue-200"
+                              onChange={(e) =>
+                                handleChange(o._id, e.target.value)
+                              }
+                              defaultValue={o?.status}
+                            >
+                              {status.map((s, i) => (
+                                <option key={i} value={s}>
+                                  {s}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                          <td className="px-4 py-2 border">{o?.buyer?.name}</td>
+                          <td className="px-4 py-2 border">
+                            {moment(o?.createAt).fromNow()}
+                          </td>
+                          <td className="px-4 py-2 border">
+                            {o?.payment?.success ? "Success" : "Failed"}
+                          </td>
+                          <td className="px-4 py-2 border">
+                            {o?.products?.length}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="p-4 bg-white">
+                    {o?.products?.map((p, i) => (
+                      <div
+                        className="flex items-start overflow-hidden border"
+                        key={p._id}
+                      >
+                        <div className="w-24 h-full flex-shrink-0">
+                          <img
+                            src={`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-photo/${p._id}`}
+                            alt={p.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="p-4 flex-1">
+                          <h4 className="font-semibold text-gray-800">
+                            {p.name}
+                          </h4>
+                          <p className="text-gray-600 text-sm mb-1">
+                            {p.description.substring(0, 30)}
+                          </p>
+                          <p className="text-blue-500 font-bold">
+                            Price: ₹{p.price}
+                          </p>
+                        </div>
                       </div>
-                      <div className="col-md-8">
-                        <p>{p.name}</p>
-                        <p>{p.description.substring(0, 30)}</p>
-                        <p>Price : {p.price}</p>
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
