@@ -143,17 +143,17 @@ const CartPage = () => {
                         </div>
                         <div className="flex justify-between space-x-8 items-start w-full">
                           <p className="text-base xl:text-base leading-6">
-                            ${p.price}{" "}
+                            ₹{p.price}{" "}
                             <span className="text-red-500 line-through">
                               {" "}
-                              ${p.price + 10}
+                              ₹{p.price + 10}
                             </span>
                           </p>
                           <p className="text-base xl:text-lg leading-6 text-gray-800">
                             01
                           </p>
                           <p className="text-base xl:text-lg font-semibold leading-6 text-gray-800">
-                            ${p.price}
+                            ₹{p.price}
                           </p>
                         </div>
                       </div>

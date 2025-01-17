@@ -53,7 +53,7 @@ const FilterSection = ({
                   className="px-2 py-2 text-sm font-medium text-gray-800 bg-white rounded-full hover:bg-blue-200 focus:outline-none focus:ring focus:ring-blue-300"
                   value={p.array}
                 >
-                  {p.name}
+                  ₹ {p.name}
                 </Radio>
               ))}
             </Radio.Group>

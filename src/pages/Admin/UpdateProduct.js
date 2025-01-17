@@ -45,7 +45,9 @@ const UpdateProduct = () => {
   //get all category
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("https://shopcart-backend-4f2a.onrender.com/api/v1/category/get-category");
+      const { data } = await axios.get(
+        "https://shopcart-backend-4f2a.onrender.com/api/v1/category/get-category"
+      );
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -78,7 +80,7 @@ const UpdateProduct = () => {
         toast.error(data?.message);
       } else {
         toast.success("Product Updated Successfully");
-        navigate("/dashboard/admin/products");
+        // navigate("/dashboard/admin/products");
       }
     } catch (error) {
       console.log(error);
@@ -102,24 +104,39 @@ const UpdateProduct = () => {
     }
   };
   return (
-    <Layout title={"Dashboard - Create Product"}>
-      <div className="container-fluid m-3 p-3">
-        <div className="row">
-          <div className="col-md-3">
-            <AdminMenu />
+    <div className="flex">
+      <div className="col-md-3">
+        <AdminMenu />
+      </div>
+      <div className="w-full p-5">
+        <div className="bg-gray-800 text-white py-6 flex justify-between items-center px-4 rounded-lg shadow-lg mb-6">
+          <div className="text-xl">Update Products Details</div>
+          <div className="flex gap-5">
+            <button
+              onClick={handleUpdate}
+              className="bg-yellow-300 hover:bg-green-600 text-gray-800 text-center font-semibold font-semibold py-2 px-4 rounded-lg transition duration-200"
+            >
+              Save Details
+            </button>
+            <button
+              className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg"
+              onClick={handleDelete}
+            >
+              Delete Product
+            </button>
           </div>
-          <div className="col-md-9">
-            <h1>Update Product</h1>
-            <div className="m-1 w-75">
+        </div>
+        <div>
+          <div className="">
+            <h2 className="text-2xl font-bold mb-6">Update Product Details</h2>
+            <div className="mb-4">
               <Select
                 bordered={false}
                 placeholder="Select a category"
                 size="large"
                 showSearch
-                className="form-select mb-3"
-                onChange={(value) => {
-                  setCategory(value);
-                }}
+                className="w-full border border-gray-300 rounded-lg"
+                onChange={(value) => setCategory(value)}
                 value={category}
               >
                 {categories?.map((c) => (
@@ -128,107 +145,82 @@ const UpdateProduct = () => {
                   </Option>
                 ))}
               </Select>
-              <div className="mb-3">
-                <label className="btn btn-outline-secondary col-md-12">
-                  {photo ? photo.name : "Upload Photo"}
-                  <input
-                    type="file"
-                    name="photo"
-                    accept="image/*"
-                    onChange={(e) => setPhoto(e.target.files[0])}
-                    hidden
-                  />
-                </label>
-              </div>
-              <div className="mb-3">
-                {photo ? (
-                  <div className="text-center">
-                    <img
-                      src={URL.createObjectURL(photo)}
-                      alt="product_photo"
-                      height={"200px"}
-                      className="img img-responsive"
-                    />
-                  </div>
-                ) : (
-                  <div className="text-center">
-                    <img
-                      src={`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-photo/${id}`}
-                      alt="product_photo"
-                      height={"200px"}
-                      className="img img-responsive"
-                    />
-                  </div>
-                )}
-              </div>
-              <div className="mb-3">
-                <input
-                  type="text"
-                  value={name}
-                  placeholder="write a name"
-                  className="form-control"
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <textarea
-                  type="text"
-                  value={description}
-                  placeholder="write a description"
-                  className="form-control"
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              </div>
-
-              <div className="mb-3">
-                <input
-                  type="number"
-                  value={price}
-                  placeholder="write a Price"
-                  className="form-control"
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <input
-                  type="number"
-                  value={quantity}
-                  placeholder="write a quantity"
-                  className="form-control"
-                  onChange={(e) => setQuantity(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <Select
-                  bordered={false}
-                  placeholder="Select Shipping "
-                  size="large"
-                  showSearch
-                  className="form-select mb-3"
-                  onChange={(value) => {
-                    setShipping(value);
-                  }}
-                  value={shipping ? "yes" : "No"}
-                >
-                  <Option value="0">No</Option>
-                  <Option value="1">Yes</Option>
-                </Select>
-              </div>
-              <div className="mb-3">
-                <button className="btn btn-primary" onClick={handleUpdate}>
-                  UPDATE PRODUCT
-                </button>
-              </div>
-              <div className="mb-3">
-                <button className="btn btn-danger" onClick={handleDelete}>
-                  DELETE PRODUCT
-                </button>
-              </div>
             </div>
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <input
+                type="text"
+                value={name}
+                placeholder="Product Name"
+                className="border border-gray-300 p-2 rounded-lg w-full"
+                onChange={(e) => setName(e.target.value)}
+              />
+              <input
+                type="number"
+                value={price}
+                placeholder="Price"
+                className="border border-gray-300 p-2 rounded-lg w-full"
+                onChange={(e) => setPrice(e.target.value)}
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <textarea
+                value={description}
+                placeholder="Description"
+                className="border border-gray-300 p-2 rounded-lg w-full col-span-2"
+                onChange={(e) => setDescription(e.target.value)}
+              />
+              <input
+                type="number"
+                value={quantity}
+                placeholder="Quantity"
+                className="border border-gray-300 p-2 rounded-lg w-full"
+                onChange={(e) => setQuantity(e.target.value)}
+              />
+              <Select
+                bordered={false}
+                placeholder="Select Shipping"
+                size="large"
+                className="w-full border border-gray-300 rounded-lg"
+                onChange={(value) => setShipping(value)}
+                value={shipping ? "Yes" : "No"}
+              >
+                <Option value="0">No</Option>
+                <Option value="1">Yes</Option>
+              </Select>
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700 font-bold mb-2">
+                {photo ? photo.name : "Upload Photo"}
+              </label>
+              <input
+                type="file"
+                name="photo"
+                accept="image/*"
+                className="border border-gray-300 p-2 rounded-lg w-full"
+                onChange={(e) => setPhoto(e.target.files[0])}
+              />
+            </div>
+            {photo ? (
+              <div className="text-center">
+                <img
+                  src={URL.createObjectURL(photo)}
+                  alt="product_photo"
+                  className="img img-responsive h-48"
+                />
+              </div>
+            ) : (
+              <div className="text-center">
+                <img
+                  src={`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-photo/${id}`}
+                  alt="product_photo"
+                  className="img img-responsive h-48"
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 

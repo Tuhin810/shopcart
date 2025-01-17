@@ -10,7 +10,9 @@ const Products = () => {
   //getall products
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get("https://shopcart-backend-4f2a.onrender.com/api/v1/product/get-product");
+      const { data } = await axios.get(
+        "https://shopcart-backend-4f2a.onrender.com/api/v1/product/get-product"
+      );
       setProducts(data.products);
     } catch (error) {
       console.log(error);
@@ -23,37 +25,67 @@ const Products = () => {
     getAllProducts();
   }, []);
   return (
-    <Layout>
-      <div className="row dashboard flex m-3 p-3 ">
-        <div className="col-md-3 ">
-          <AdminMenu />
+    <div className="flex">
+      <div className="col-md-3 ">
+        <AdminMenu />
+      </div>
+      <div className="w-full p-5">
+        <div className="bg-gray-800 text-white py-6 flex justify-between items-center px-4 rounded-lg shadow-lg mb-6">
+          <div className="text-xl">All Products</div>
+          <button
+            // onClick={handleCreate}
+            className="bg-yellow-300 hover:bg-green-600 text-gray-800 text-center font-semibold font-semibold py-2 px-4 rounded-lg transition duration-200"
+          >
+            Create Product
+          </button>
         </div>
-        <div className="col-md-9 ">
-          <h1 className="text-center">All Products List</h1>
-          <div className="d-flex flex-wrap">
-            {products?.map((p) => (
-              <Link
-                key={p._id}
-                to={`/dashboard/admin/product/${p.slug}`}
-                className="product-link"
-              >
-                <div className="card m-2" style={{ width: "18rem" }}>
-                  <img
-                    src={`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-photo/${p._id}`}
-                    className="card-img-top"
-                    alt={p.name}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{p.name}</h5>
-                    <p className="card-text">{p.description}</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+        <div className="overflow-x-auto overflow-y-scroll h-[80vh]">
+          <table className="table-auto border-collapse border border-gray-300 w-full text-left">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border border-gray-300 px-4 py-2">Image</th>
+                <th className="border border-gray-300 px-4 py-2">Name</th>
+                <th className="border border-gray-300 px-4 py-2">
+                  Description
+                </th>
+                <th className="border border-gray-300 px-4 py-2">Quantity</th>
+                <th className="border border-gray-300 px-4 py-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products?.map((p) => (
+                <tr key={p._id} className="hover:bg-gray-50">
+                  <td className="border border-gray-300 px-4 py-2">
+                    <img
+                      src={`https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-photo/${p._id}`}
+                      alt={p.name}
+                      className="w-20 h-20 object-cover rounded"
+                    />
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">{p.name}</td>
+                  <td className="border border-gray-300 px-4 py-2 truncate max-w-xs">
+                    {p.description}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2 truncate max-w-xs">
+                    {p.quantity}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    <div className="flex space-x-2">
+                      <Link
+                        to={`/dashboard/admin/product/${p.slug}`}
+                        className="bg-blue-500 text-white px-3 py-2 rounded-lg hover:bg-blue-600"
+                      >
+                        See Details
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 

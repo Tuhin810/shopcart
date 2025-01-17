@@ -21,7 +21,9 @@ const AdminOrders = () => {
   const [auth, setAuth] = useAuth();
   const getOrders = async () => {
     try {
-      const { data } = await axios.get("https://shopcart-backend-4f2a.onrender.com/api/v1/auth/all-orders");
+      const { data } = await axios.get(
+        "https://shopcart-backend-4f2a.onrender.com/api/v1/auth/all-orders"
+      );
       setOrders(data);
     } catch (error) {
       console.log(error);
@@ -34,22 +36,38 @@ const AdminOrders = () => {
 
   const handleChange = async (orderId, value) => {
     try {
-      const { data } = await axios.put(`https://shopcart-backend-4f2a.onrender.com/api/v1/auth/order-status/${orderId}`, {
-        status: value,
-      });
+      const { data } = await axios.put(
+        `https://shopcart-backend-4f2a.onrender.com/api/v1/auth/order-status/${orderId}`,
+        {
+          status: value,
+        }
+      );
       getOrders();
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <Layout title={"All Orders Data"}>
-      <div className="row dashboard flex m-3 p-3 ">
-        <div className="col-md-3">
-          <AdminMenu />
+    <div className="flex">
+      <div className="col-md-3">
+        <AdminMenu />
+      </div>
+      <div className="w-full p-5">
+        <div className="bg-gray-800 text-white py-6 flex justify-between items-center px-4 rounded-lg shadow-lg mb-6">
+          <div className="text-xl">All Orders</div>
+          <button
+            // onClick={handleCreate}
+            className="bg-yellow-300 hover:bg-green-600 text-gray-800 text-center font-semibold font-semibold py-2 px-4 rounded-lg transition duration-200"
+          >
+            Download List
+          </button>
         </div>
-        <div className="col-md-9">
-          <h1 className="text-center">All Orders</h1>
+        <div className="h-[80vh]">
+          <img
+            className="h-[80%] mx-auto"
+            src="https://img.freepik.com/free-photo/cardboard-box-with-cargo-checklist-pencil_107791-16644.jpg?t=st=1737137768~exp=1737141368~hmac=0357c969dfa1523cbd859daa92ca028a741f2fb1702e2efbbbf4da321c891353&w=740"
+          />
+          {/* <div className="text-center">No Order placed yet</div> */}
           {orders?.map((o, i) => {
             return (
               <div className="border shadow">
@@ -112,7 +130,7 @@ const AdminOrders = () => {
           })}
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 

@@ -32,14 +32,36 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<><HomePage /><Footer/></>} />
+        <Route
+          path="/"
+          element={
+            <>
+              <HomePage />
+              <Footer />
+            </>
+          }
+        />
         <Route path="/product/:slug" element={<ProductDetails />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/category/:slug" element={<CategoryProduct />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/allproducts" element={<><AllProducts/></>} />
-        <Route path="/blogs" element={<><Blogs/></>} />
+        <Route
+          path="/allproducts"
+          element={
+            <>
+              <AllProducts />
+            </>
+          }
+        />
+        <Route
+          path="/blogs"
+          element={
+            <>
+              <Blogs />
+            </>
+          }
+        />
 
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
@@ -47,7 +69,7 @@ function App() {
           <Route path="user/profile" element={<Profile />} />
         </Route>
         <Route path="/dashboard" element={<AdminRoute />}>
-          <Route path="admin" element={<AdminDashboard />} />
+          <Route path="admin" element={<Products />} />
           <Route path="admin/create-category" element={<CreateCategory />} />
           <Route path="admin/create-product" element={<CreateProduct />} />
           <Route path="admin/product/:slug" element={<UpdateProduct />} />

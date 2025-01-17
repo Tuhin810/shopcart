@@ -4,7 +4,11 @@ import AdminMenu from "./../../components/Layout/AdminMenu";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Select } from "antd";
-import { IconUpload, IconCategory, IconShoppingCart } from "@tabler/icons-react";
+import {
+  IconUpload,
+  IconCategory,
+  IconShoppingCart,
+} from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 const { Option } = Select;
 
@@ -66,58 +70,58 @@ const CreateProduct = () => {
   };
 
   return (
-    <div className="container-fluid m-3 p-3">
+    <div className="">
       <div className="flex">
-      <div className="col-md-3">
-            <AdminMenu />
-          </div>
-          <div className="w-full p-5">
+        <div className="col-md-3">
+          <AdminMenu />
+        </div>
+        <div className="w-full p-5">
           <div className="bg-gray-800 text-white py-6 flex justify-between items-center px-4 rounded-lg shadow-lg mb-6">
             <div className="text-xl">Create Product</div>
             <button
-            onClick={handleCreate}
-        className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded transition duration-200"
-      >
-        Save Details
-      </button>
+              onClick={handleCreate}
+              className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded transition duration-200"
+            >
+              Save Details
+            </button>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg animate-fade-in">
             <form className="space-y-4" onSubmit={handleCreate}>
-            <div className="grid grid-cols-2 gap-4">
-            <div className="flex flex-col gap-3">
-                <label className="block text-sm font-medium text-gray-700">
-                  Select Category
-                </label>
-                <Select
-                  placeholder="Select a category"
-                  size="large"
-                  className="w-full"
-                  onChange={(value) => setCategory(value)}
-                >
-                  {categories?.map((c) => (
-                    <Option key={c._id} value={c._id}>
-                      {c.name}
-                    </Option>
-                  ))}
-                </Select>
-              </div>
-              <div className="flex flex-col gap-3">
-                <label className="block text-sm font-medium text-gray-700">
-                  Product Name
-                </label>
-                <div className="flex items-center gap-2">
-                  <IconShoppingCart size={20} className="text-gray-500" />
-                  <input
-                    type="text"
-                    value={name}
-                    placeholder="Enter product name"
-                    className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
-                    onChange={(e) => setName(e.target.value)}
-                  />
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex flex-col gap-3">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Select Category
+                  </label>
+                  <Select
+                    placeholder="Select a category"
+                    size="large"
+                    className="w-full"
+                    onChange={(value) => setCategory(value)}
+                  >
+                    {categories?.map((c) => (
+                      <Option key={c._id} value={c._id}>
+                        {c.name}
+                      </Option>
+                    ))}
+                  </Select>
+                </div>
+                <div className="flex flex-col gap-3">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Product Name
+                  </label>
+                  <div className="flex items-center gap-2">
+                    <IconShoppingCart size={20} className="text-gray-500" />
+                    <input
+                      type="text"
+                      value={name}
+                      placeholder="Enter product name"
+                      className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
                 </div>
               </div>
-              </div>
-            
+
               <div className="flex flex-col gap-3">
                 <label className="block text-sm font-medium text-gray-700">
                   Product Image
@@ -145,8 +149,6 @@ const CreateProduct = () => {
                   </div>
                 )}
               </div>
-
-             
 
               <div className="flex flex-col gap-3">
                 <label className="block text-sm font-medium text-gray-700">
@@ -201,8 +203,6 @@ const CreateProduct = () => {
                   <Option value="1">Yes</Option>
                 </Select>
               </div>
-
-            
             </form>
           </div>
         </div>
