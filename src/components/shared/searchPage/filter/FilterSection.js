@@ -12,7 +12,15 @@ const FilterSection = ({
 }) => {
   return (
     <div>
-      <div className="space-y-6 bg-yellow-300 h-[80vh] p-4 rounded-2xl shadow-lg mt-4">
+      <div className="space-y-6 bg-[#ffe86b]  p-4 rounded-2xl shadow-lg mt-4 md:hidden">
+        <SearchInput
+          values={values}
+          setValues={setValues}
+          placeholder="Search categories..."
+          className="w-full p-2 border border-gray-300 rounded-lg "
+        />
+      </div>
+      <div className="space-y-6 bg-[#ffe86b] h-[80vh] p-4 rounded-2xl shadow-lg mt-4 hidden md:flex flex-col">
         {/* Search Bar */}
         <div>
           <h2 className="text-lg font-bold mb-2">Search</h2>

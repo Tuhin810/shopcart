@@ -127,8 +127,8 @@ const AllProducts = () => {
   };
   return (
     <Layout title={"ALl Products - Best offers "}>
-      <div className="flex pl-16">
-        <div className="w-1/4 h-screen pt-24 p-4">
+      <div className="md:flex md:pl-16">
+        <div className="md:w-1/4 md:h-screen pt-16 md:pt-24 p-4">
           <FilterSection
             categories={categories}
             handleFilter={handleFilter}
@@ -139,7 +139,7 @@ const AllProducts = () => {
           />
         </div>
 
-        <div className="w-3/4 pt-28 pl-8 h-screen overflow-y-scroll ">
+        <div className="md:w-3/4 md:pt-28 md:pl-8 h-screen overflow-y-scroll hidescroll">
           {values?.results.length > 0 && (
             <div className="inline-flex items-center justify-between px-4 py-2 mb-5 border text-center text-sm text-black rounded-full">
               <span>search for {searchvalues?.keyword}</span>
