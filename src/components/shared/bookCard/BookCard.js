@@ -3,7 +3,7 @@ import { IconShoppingBagCheck, IconShoppingBagPlus } from "@tabler/icons-react";
 import React from "react";
 import { useCart } from "../../../context/cartIds";
 
-const BookCard = ({ p,cart,setCart, toast, navigate }) => {
+const BookCard = ({ p, cart, setCart, toast, navigate }) => {
   const { addProduct, removeProduct, isProductInCart } = useCart(); // Destructure context methods
 
   const removeCartItem = (pid) => {
@@ -17,11 +17,11 @@ const BookCard = ({ p,cart,setCart, toast, navigate }) => {
       console.log(error);
     }
   };
-  
+
   const handleCartToggle = () => {
     if (isProductInCart(p._id)) {
       removeProduct(p._id); // Remove product from cart
-      removeCartItem(p._id)
+      removeCartItem(p._id);
       toast.info("Item removed from cart");
     } else {
       addProduct(p._id); // Add product to cart
@@ -44,13 +44,17 @@ const BookCard = ({ p,cart,setCart, toast, navigate }) => {
             handleCartToggle();
           }}
           className={`absolute bottom-3 z-[20] flex gap-1 items-center ${
-            isProductInCart(p._id) ? "bg-yellow-300 text-black" : "bg-black text-gray-50"
+            isProductInCart(p._id)
+              ? "bg-yellow-300 text-black"
+              : "bg-black text-gray-50"
           } px-4 rounded-full py-2 text-sm right-3  transition`}
         >
-          {
-            isProductInCart(p._id) ?    <IconShoppingBagCheck size={20} />:   <IconShoppingBagPlus size={20} />
-          }
-       
+          {isProductInCart(p._id) ? (
+            <IconShoppingBagCheck size={20} />
+          ) : (
+            <IconShoppingBagPlus size={20} />
+          )}
+
           {isProductInCart(p._id) ? "Added" : "Add"}
         </button>
 
@@ -65,9 +69,9 @@ const BookCard = ({ p,cart,setCart, toast, navigate }) => {
 
         {/* Text Section */}
       </div>
-      <div className="justify-between items-center w-48 px-2">
-        <div className="mt-3">
-          <h4 className="text-sm font-semibold text-gray-90">
+      <div className="justify-between items-center w-48 ">
+        <div className="mt-4">
+          <h4 className="text-sm mb-3 font-semibold text-gray-90">
             {p?.name?.length > 20 ? `${p.name.substring(0, 20)}...` : p?.name}
           </h4>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useCart } from "../../../context/cart";
@@ -50,7 +50,10 @@ const CategoryProduct = ({ topic }) => {
           </div>
 
           {/* Right Section: View More */}
-          <div className="hidden md:flex group flex items-center pr-8 gap-2 text-gray-800 cursor-pointer  transition">
+          <Link
+            to={`/category/${category?.slug}`}
+            className="hidden md:flex group flex items-center pr-8 gap-2 text-gray-800 cursor-pointer  transition"
+          >
             <span className="text-sm font-medium group-hover:text-yellow-500">
               View More
             </span>
@@ -63,7 +66,7 @@ const CategoryProduct = ({ topic }) => {
                 className="transform transition-all duration-300 group-hover:-translate-x-1 group-hover:translate-x-0.5"
               />
             </div>
-          </div>
+          </Link>
         </div>
         {loading && (
           <>
