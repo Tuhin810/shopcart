@@ -69,7 +69,7 @@ const HeroSection = () => {
                 <div className="relative flex bg-white p-2 rounded-full shadow-lg">
                   <input
                     type="search"
-                    placeholder="Search"
+                    placeholder="Search Books..."
                     aria-label="Search"
                     value={values.keyword}
                     onChange={(e) =>
