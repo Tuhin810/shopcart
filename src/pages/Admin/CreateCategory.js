@@ -15,9 +15,12 @@ const CreateCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("https://shopcart-backend-4f2a.onrender.com/api/v1/category/create-category", {
-        name,
-      });
+      const { data } = await axios.post(
+        "https://shopcart-backend-4f2a.onrender.com/api/v1/category/create-category",
+        {
+          name,
+        }
+      );
       if (data?.success) {
         toast.success(`${name} is created`);
         getAllCategory();
@@ -33,7 +36,9 @@ const CreateCategory = () => {
   //get all cat
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("https://shopcart-backend-4f2a.onrender.com/api/v1/category/get-category");
+      const { data } = await axios.get(
+        "https://shopcart-backend-4f2a.onrender.com/api/v1/category/get-category"
+      );
       if (data?.success) {
         setCategories(data?.category);
       }
@@ -86,39 +91,43 @@ const CreateCategory = () => {
     }
   };
   return (
-      <div className="container-fluid m-3 p-3 ">
-        <div className="flex ">
-          <div className="col-md-3">
-            <AdminMenu />
-          </div>
+    <div className="">
+      <div className="flex ">
+        <div className="col-md-3">
+          <AdminMenu />
+        </div>
 
-          <div className="w-full p-5">
-            <div className="flex justify-between items-center bg-gray-800 py-6 px-4 w-full rounded-lg shadow-lg  text-white">
+        <div className="w-full p-5">
+          <div className="flex justify-between items-center bg-gray-800 py-6 px-4 w-full rounded-lg shadow-lg  text-white">
             <div className="text-xl">All Categories</div>
             <CategoryForm
-                handleSubmit={handleSubmit}
-                value={name}
-                setValue={setName}
-              />
-              </div>
-           
-            <div className="w-full mt-5 bg-white shadow-md rounded-md">
-  <table className="w-full border border-gray-300 rounded-md overflow-hidden">
-    <thead>
-      <tr className="bg-gray-100 text-left">
-        <th className="p-3 text-sm font-semibold text-gray-800">Name</th>
-        <th className="p-3 text-sm font-semibold text-gray-800">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      {categories?.map((c) => (
-        <tr
-          key={c._id}
-          className="border-b last:border-none hover:bg-gray-50 transition"
-        >
-          <td className="p-3 text-sm text-gray-800">{c.name}</td>
-          <td className="p-3 text-sm flex items-center space-x-2">
-            {/* <button
+              handleSubmit={handleSubmit}
+              value={name}
+              setValue={setName}
+            />
+          </div>
+
+          <div className="w-full mt-5 bg-white shadow-md rounded-md">
+            <table className="w-full border border-gray-300 rounded-md overflow-hidden">
+              <thead>
+                <tr className="bg-gray-100 text-left">
+                  <th className="p-3 text-sm font-semibold text-gray-800">
+                    Name
+                  </th>
+                  <th className="p-3 text-sm font-semibold text-gray-800">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {categories?.map((c) => (
+                  <tr
+                    key={c._id}
+                    className="border-b last:border-none hover:bg-gray-50 transition"
+                  >
+                    <td className="p-3 text-sm text-gray-800">{c.name}</td>
+                    <td className="p-3 text-sm flex items-center space-x-2">
+                      {/* <button
               className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm font-medium"
               onClick={() => {
                 setVisible(true);
@@ -128,33 +137,33 @@ const CreateCategory = () => {
             >
               Edit
             </button> */}
-            <button
-              className="bg-yellow-300 hover:bg-red-600 text-white py-1 px-3 rounded text-sm font-medium"
-              onClick={() => handleDelete(c._id)}
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
-            <Modal
-              onCancel={() => setVisible(false)}
-              footer={null}
-              visible={visible}
-            >
-              <CategoryForm
-                value={updatedName}
-                setValue={setUpdatedName}
-                handleSubmit={handleUpdate}
-              />
-            </Modal>
+                      <button
+                        className="bg-yellow-300 hover:bg-red-600 text-white py-1 px-3 rounded text-sm font-medium"
+                        onClick={() => handleDelete(c._id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+
+          <Modal
+            onCancel={() => setVisible(false)}
+            footer={null}
+            visible={visible}
+          >
+            <CategoryForm
+              value={updatedName}
+              setValue={setUpdatedName}
+              handleSubmit={handleUpdate}
+            />
+          </Modal>
         </div>
       </div>
+    </div>
   );
 };
 

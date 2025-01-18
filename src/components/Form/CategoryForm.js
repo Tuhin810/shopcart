@@ -26,6 +26,7 @@ const CategoryForm = ({ handleSubmit, value, setValue, closeModal }) => {
             </button>
             <button
               type="submit"
+              onClick={handleSubmit}
               className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
             >
               Submit
@@ -37,16 +38,8 @@ const CategoryForm = ({ handleSubmit, value, setValue, closeModal }) => {
   );
 };
 
-const AddCategory = () => {
+const AddCategory = ({ handleSubmit, value, setValue }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [value, setValue] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Category Submitted:", value);
-    setValue(""); // Reset input value
-    setIsModalOpen(false); // Close modal after submission
-  };
 
   return (
     <div className="">
@@ -64,7 +57,7 @@ const AddCategory = () => {
           handleSubmit={handleSubmit}
           value={value}
           setValue={setValue}
-          closeModal={() => setIsModalOpen(false)}
+          closeModal={setIsModalOpen}
         />
       )}
     </div>

@@ -7,16 +7,21 @@ import toast from "react-hot-toast";
 import { useCart } from "../context/cart";
 import BookCard from "../components/shared/bookCard/BookCard";
 import { IconArrowRight, IconBook } from "@tabler/icons-react";
+import Spinner from "../components/Spinner";
 const CategoryProduct = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const [cart, setCart] = useCart();
   useEffect(() => {
     if (params?.slug) getPrductsByCat();
   }, [params?.slug]);
+
   const getPrductsByCat = async () => {
+    setLoading(true);
     try {
       const { data } = await axios.get(
         `https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-category/${params.slug}`
@@ -25,12 +30,14 @@ const CategoryProduct = () => {
       setCategory(data?.category);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <Layout>
-     <div className="  pt-24 sm:px-20">
+      <div className="  pt-24 sm:px-20">
         <div className="flex justify-between items-center px-4  rounded-md shadow-sm">
           {/* Left Section: Category and Total Results */}
           <div>
@@ -42,10 +49,9 @@ const CategoryProduct = () => {
               {products?.length} Books in stock
             </h6>
           </div>
-
         </div>
-
-        <div className="items-center justify-center md:justify-between   md:flex pt-10">
+        {loading && <Spinner />}
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 pt-10">
           {products?.map((p) => (
             <BookCard
               key={p.id} // Ensure a unique key for each item

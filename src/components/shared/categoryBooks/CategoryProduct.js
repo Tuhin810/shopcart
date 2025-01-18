@@ -6,17 +6,21 @@ import { useCart } from "../../../context/cart";
 import Layout from "../../Layout/Layout";
 import { IconArrowRight, IconBook } from "@tabler/icons-react";
 import BookCard from "../bookCard/BookCard";
+import Spinner from "../../Spinner";
 const CategoryProduct = ({ topic }) => {
   const params = useParams();
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const [cart, setCart] = useCart();
   useEffect(() => {
     getPrductsByCat();
   }, []);
 
   const getPrductsByCat = async () => {
+    setLoading(true);
     try {
       const { data } = await axios.get(
         `https://shopcart-backend-4f2a.onrender.com/api/v1/product/product-category/${topic}`
@@ -25,6 +29,8 @@ const CategoryProduct = ({ topic }) => {
       setCategory(data?.category);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -48,8 +54,10 @@ const CategoryProduct = ({ topic }) => {
             <span className="text-sm font-medium group-hover:text-yellow-500">
               View More
             </span>
-            <div className=" flex items-center justify-center w-10 h-10 bg-black rounded-full text-white
-             group-hover:text-yellow-200 overflow-hidden">
+            <div
+              className=" flex items-center justify-center w-10 h-10 bg-black rounded-full text-white
+             group-hover:text-yellow-200 overflow-hidden"
+            >
               <IconArrowRight
                 size={16}
                 className="transform transition-all duration-300 group-hover:-translate-x-1 group-hover:translate-x-0.5"
@@ -57,7 +65,17 @@ const CategoryProduct = ({ topic }) => {
             </div>
           </div>
         </div>
-
+        {loading && (
+          <>
+            <div class="text-center mx-auto">
+              <div class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-yellow-500 mx-auto"></div>
+              <h2 class="text-zinc-900  mt-4">Loading...</h2>
+              <p class="text-zinc-600 dark:text-zinc-400">
+                Your adventure is about to begin in few seconds
+              </p>
+            </div>
+          </>
+        )}
         <div className="items-center justify-center md:justify-between   md:flex pt-10">
           {products?.slice(-6).map((p) => (
             <BookCard
