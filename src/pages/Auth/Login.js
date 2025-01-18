@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
 import { useAuth } from "../../context/auth";
+import SignInGoogle from "../../components/shared/googleLogin/GoogleSignIn";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,18 +45,25 @@ const Login = () => {
   return (
     <Layout title="Register - Ecommer App">
       <div class="font-[sans-serif]">
-        <div class="min-h-screen flex fle-col items-center justify-center pt-20 md:pt-0 py-6 px-4">
+        <div class="min-h-screen  flex fle-col items-center justify-center pt-20 md:pt-24 py-6 px-4">
           <div class="grid md:grid-cols-2 items-center gap-6 max-w-6xl w-full">
             <div class="border border-gray-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
               <form class="space-y-4">
-                <div class="mb-8">
+                <div class="mb-8 ">
                   <h3 class="text-gray-800 text-3xl font-bold">Sign in</h3>
                   <p class="text-gray-500 text-sm mt-4 leading-relaxed">
                     Sign in to your account and explore a world of
                     possibilities. Your journey begins here.
                   </p>
                 </div>
-
+                <div class="mb-6 flex flex-col gap-y-2 gap-x-4 lg:flex-row">
+                  <SignInGoogle />
+                </div>
+                <div className="flex items-center my-8">
+                  <div className="flex-grow h-px bg-gray-300"></div>
+                  <span className="mx-4 text-gray-500 font-medium">or</span>
+                  <div className="flex-grow h-px bg-gray-300"></div>
+                </div>
                 <div>
                   <label class="text-gray-800 text-sm mb-2 block">
                     User email

@@ -9,19 +9,22 @@ import { SearchProvider } from "./context/search";
 import { CartProvider } from "./context/cart";
 import "antd/dist/reset.css";
 import { CartIdProvider } from "./context/cartIds";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthProvider>
-    <SearchProvider>
-      <CartProvider>
-        <CartIdProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-        </CartIdProvider>
-      </CartProvider>
-    </SearchProvider>
+    <GoogleOAuthProvider clientId="854940596531-pe3tvrsec94arejuc24fbl0ie44dn0kk.apps.googleusercontent.com">
+      <SearchProvider>
+        <CartProvider>
+          <CartIdProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </CartIdProvider>
+        </CartProvider>
+      </SearchProvider>
+    </GoogleOAuthProvider>
   </AuthProvider>
 );
 
